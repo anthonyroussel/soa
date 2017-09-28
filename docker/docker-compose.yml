@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  mariadb:
+    # see https://hub.docker.com/_/mysql/
+    #
+    image: mariadb
+    volumes:
+      - mysqldata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=s22s
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mariadb:db
+
+  web:
+    # see https://hub.docker.com/_/php/
+    #
+    image: php:7-apache
+    volumes:
+      - .:/var/www/html
+    links:
+      - mariadb  
+
+volumes:
+  mysqldata:
+
