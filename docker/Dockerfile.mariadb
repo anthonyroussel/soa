@@ -1,0 +1,4 @@
+FROM mariadb
+# see https://hub.docker.com/_/mariadb
+
+ADD docker/init.sql /docker-entrypoint-initdb.d/

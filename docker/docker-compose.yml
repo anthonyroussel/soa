@@ -4,11 +4,14 @@ services:
   mariadb:
     # see https://hub.docker.com/_/mysql/
     #
-    image: mariadb
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.mariadb
     volumes:
       - mysqldata:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=s22s
+      - MYSQL_DATABASE=saas
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -18,7 +21,9 @@ services:
   web:
     # see https://hub.docker.com/_/php/
     #
-    image: php:7-apache
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.php
     volumes:
       - .:/var/www/html
     links:
