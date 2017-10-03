@@ -109,19 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     json_return(404, "Missing user");
   }
 
-  $stmt = $mysqli->prepare("select id, name, email, status from users where id = ?");
-  $stmt->bind_param("i", $id);
-  $stmt->execute();
-
-  $result = $stmt->get_result();
-
-  if ($result->num_rows != 1) {
-    json_return(404, "Missing user");
-  }
-
-  $row = $result->fetch_assoc();
-  exit(json_encode($row));
-
   http_response_code(200);
   exit(json_encode(array("code" => 200, "message" => "User $id deleted")));
 

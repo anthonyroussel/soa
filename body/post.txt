@@ -1,0 +1,1 @@
+name=anthony&email=anthony@student.lut.fi&password=toto&status=lol
